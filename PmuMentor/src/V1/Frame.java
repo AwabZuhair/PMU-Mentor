@@ -37,9 +37,9 @@ public class Frame extends JFrame{
 	MenteeLoginPanel MenteeLoginPanel;
 	HomePanel homePanel;
 	MentorLoginPanel MentorLoginPanel;
-	//MenteeSignUpPanel MenteeSignUpPanel;
-	//MentorSignUpPanel MentorSignUpPanel;
-	//SettingsPanel settingsPanel;
+	MenteeSignUpPanel MenteeSignUpPanel;
+	SignUpAsMentorPanel SignUpAsMentorPanel;
+	//MentorPendingPanel MentorPendingPanel;
 	AccountInformationPanel accountInformationPanel;
 	
 	GraphicsDevice device;
@@ -58,6 +58,8 @@ public class Frame extends JFrame{
 		MenteeLoginPanel = new MenteeLoginPanel(this);
 		accountInformationPanel = new AccountInformationPanel(this);
 		MentorLoginPanel = new MentorLoginPanel(this);
+		MenteeSignUpPanel = new MenteeSignUpPanel(this);
+		SignUpAsMentorPanel = new SignUpAsMentorPanel(this);
 		
 		cardLayout = new CardLayout();
 		cardPanel = new JPanel(cardLayout);
@@ -66,6 +68,8 @@ public class Frame extends JFrame{
 		cardPanel.add(MenteeLoginPanel, "MenteeLogin");
 		cardPanel.add(accountInformationPanel, "accountInformation");
 		cardPanel.add(MentorLoginPanel, "MentorLogin");
+		cardPanel.add(MenteeSignUpPanel, "MenteeRegister");
+		cardPanel.add(SignUpAsMentorPanel, "MentorRegister");
 
 		showHomePanel();
 		
@@ -130,10 +134,6 @@ public class Frame extends JFrame{
 	        cardLayout.show(cardPanel, "MentorLogin");
 		}
 		
-		public void showSettingsPanel() {
-	        cardLayout.show(cardPanel, "settings");
-		}
-		
 		public void showMenteeRegisterPanel() {
 	        cardLayout.show(cardPanel, "MenteeRegister");
 		}
@@ -148,6 +148,11 @@ public class Frame extends JFrame{
 		
 		public void showAccountInformationPanel() {
 	        cardLayout.show(cardPanel, "accountInformation");
+		}
+
+		public void showMentorPendingPanel() {
+	        cardLayout.show(cardPanel, "MentorPending");
+			
 		}
 		
 		
