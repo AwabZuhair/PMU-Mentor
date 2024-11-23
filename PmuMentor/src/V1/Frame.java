@@ -39,7 +39,7 @@ public class Frame extends JFrame{
 	MentorLoginPanel MentorLoginPanel;
 	MenteeSignUpPanel MenteeSignUpPanel;
 	SignUpAsMentorPanel SignUpAsMentorPanel;
-	//MentorPendingPanel MentorPendingPanel;
+	MentorPendingPanel MentorPendingPanel;
 	AccountInformationPanel accountInformationPanel;
 	
 	GraphicsDevice device;
@@ -60,6 +60,7 @@ public class Frame extends JFrame{
 		MentorLoginPanel = new MentorLoginPanel(this);
 		MenteeSignUpPanel = new MenteeSignUpPanel(this);
 		SignUpAsMentorPanel = new SignUpAsMentorPanel(this);
+		MentorPendingPanel = new MentorPendingPanel(this);
 		
 		cardLayout = new CardLayout();
 		cardPanel = new JPanel(cardLayout);
@@ -70,6 +71,7 @@ public class Frame extends JFrame{
 		cardPanel.add(MentorLoginPanel, "MentorLogin");
 		cardPanel.add(MenteeSignUpPanel, "MenteeRegister");
 		cardPanel.add(SignUpAsMentorPanel, "MentorRegister");
+		cardPanel.add(MentorPendingPanel, "MentorPending");
 
 		showHomePanel();
 		

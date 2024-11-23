@@ -218,7 +218,6 @@ public class SignUpAsMentorPanel extends JPanel {
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Request Sent successfully.", "Sign Up Successful", JOptionPane.INFORMATION_MESSAGE);
                 this.parentFrame.showMentorPendingPanel();
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to send request.", "Sign Up Failed", JOptionPane.ERROR_MESSAGE);
