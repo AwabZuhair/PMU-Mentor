@@ -111,6 +111,7 @@ public class AccountInformationPanel extends JPanel {
 
     private void updateAccountInformation() {
         String newUsername = usernameTextBox.getText();
+        String newEmail = emailTextBox.getText();
         String newPassword = String.valueOf(passwordTextBox.getPassword());
 
         if (newUsername.length() > 20) {
@@ -126,11 +127,37 @@ public class AccountInformationPanel extends JPanel {
         try (Connection connection = DriverManager.getConnection(
                 "jdbc:mysql://127.0.0.1:3306/pmu_mentor_project", "root", "Awab_hamadto123")) {
 
-            String updateQuery = "UPDATE REGISTERED_USERS SET username = ?, AccountPassword = ? WHERE StudentID = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
-            preparedStatement.setString(1, newUsername);
-            preparedStatement.setString(2, newPassword);
-            preparedStatement.setString(3, MenteeLoginPanel.StudentID);
+            StringBuilder updateQuery = new StringBuilder("UPDATE REGISTERED_USERS SET ");
+            boolean firstField = true;
+
+            if (!newUsername.isEmpty()) {
+                updateQuery.append("username = ?");
+                firstField = false;
+            }
+            if (!newEmail.isEmpty()) {
+                if (!firstField) updateQuery.append(", ");
+                updateQuery.append("email = ?");
+                firstField = false;
+            }
+            if (!newPassword.isEmpty()) {
+                if (!firstField) updateQuery.append(", ");
+                updateQuery.append("AccountPassword = ?");
+            }
+            updateQuery.append(" WHERE StudentID = ?");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(updateQuery.toString());
+
+            int paramIndex = 1;
+            if (!newUsername.isEmpty()) {
+                preparedStatement.setString(paramIndex++, newUsername);
+            }
+            if (!newEmail.isEmpty()) {
+                preparedStatement.setString(paramIndex++, newEmail);
+            }
+            if (!newPassword.isEmpty()) {
+                preparedStatement.setString(paramIndex++, newPassword);
+            }
+            preparedStatement.setString(paramIndex, MenteeLoginPanel.StudentID);
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {

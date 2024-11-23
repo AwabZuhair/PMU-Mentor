@@ -36,7 +36,7 @@ public class Frame extends JFrame{
 	//Insert Panels Here 
 	MenteeLoginPanel MenteeLoginPanel;
 	HomePanel homePanel;
-	//MentorLoginPanel MentorLoginPanel;
+	MentorLoginPanel MentorLoginPanel;
 	//MenteeSignUpPanel MenteeSignUpPanel;
 	//MentorSignUpPanel MentorSignUpPanel;
 	//SettingsPanel settingsPanel;
@@ -57,6 +57,7 @@ public class Frame extends JFrame{
         homePanel = new HomePanel(this);
 		MenteeLoginPanel = new MenteeLoginPanel(this);
 		accountInformationPanel = new AccountInformationPanel(this);
+		MentorLoginPanel = new MentorLoginPanel(this);
 		
 		cardLayout = new CardLayout();
 		cardPanel = new JPanel(cardLayout);
@@ -64,6 +65,7 @@ public class Frame extends JFrame{
 		cardPanel.add(homePanel, "home");
 		cardPanel.add(MenteeLoginPanel, "MenteeLogin");
 		cardPanel.add(accountInformationPanel, "accountInformation");
+		cardPanel.add(MentorLoginPanel, "MentorLogin");
 
 		showHomePanel();
 		
