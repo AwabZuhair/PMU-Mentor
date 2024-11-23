@@ -34,9 +34,11 @@ public class Frame extends JFrame{
 	JPanel cardPanel;
 	
 	//Insert Panels Here 
-	LoginPanel loginPanel;
-	//RegisterPanel registerPanel;
+	MenteeLoginPanel MenteeLoginPanel;
 	HomePanel homePanel;
+	//MentorLoginPanel MentorLoginPanel;
+	//MenteeSignUpPanel MenteeSignUpPanel;
+	//MentorSignUpPanel MentorSignUpPanel;
 	//SettingsPanel settingsPanel;
 	//AccountInformationPanel accountInformationPanel;
 	
@@ -53,21 +55,15 @@ public class Frame extends JFrame{
 	
         
         homePanel = new HomePanel(this);
-		loginPanel = new LoginPanel(this);
-		//registerPanel = new RegisterPanel(this);
-		//settingsPanel = new SettingsPanel(this);
-		//accountInformationPanel = new AccountInformationPanel(this);
+		MenteeLoginPanel = new MenteeLoginPanel(this);
 		
 		cardLayout = new CardLayout();
 		cardPanel = new JPanel(cardLayout);
 		
 		cardPanel.add(homePanel, "home");
-		cardPanel.add(loginPanel, "login");
-		//cardPanel.add(registerPanel, "register");
-		//cardPanel.add(settingsPanel, "settings");
-		//cardPanel.add(accountInformationnPanel, "accountInfo");
+		cardPanel.add(MenteeLoginPanel, "MenteeLogin");
 
-		showLoginPanel();
+		showHomePanel();
 		
         device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 		device.setFullScreenWindow(this);
@@ -122,16 +118,24 @@ public class Frame extends JFrame{
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
 		}
 		
-		public void showLoginPanel() {
-	        cardLayout.show(cardPanel, "login");
+		public void showMenteeLoginPanel() {
+	        cardLayout.show(cardPanel, "MenteeLogin");
+		}
+		
+		public void showMentorLoginPanel() {
+	        cardLayout.show(cardPanel, "MentorLogin");
 		}
 		
 		public void showSettingsPanel() {
 	        cardLayout.show(cardPanel, "settings");
 		}
 		
-		public void showRegisterPanel() {
-	        cardLayout.show(cardPanel, "register");
+		public void showMenteeRegisterPanel() {
+	        cardLayout.show(cardPanel, "MenteeRegister");
+		}
+		
+		public void showMentorRegisterPanel() {
+	        cardLayout.show(cardPanel, "MentorRegister");
 		}
 		
 		public void showHomePanel() {

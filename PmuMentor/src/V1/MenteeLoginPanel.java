@@ -29,82 +29,95 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
-public class LoginPanel extends JPanel{
+public class MenteeLoginPanel extends JPanel{
 
-	static final int SCREEN_WIDTH = Frame.WIDTH;
-	static final int SCREEN_HEIGHT = Frame.HEIGHT;
-	static final int PASS_WIDTH = 300;
-	static final int USER_WIDTH = 300;
+	public static final int SCREEN_WIDTH = Frame.WIDTH;
+	public static final int SCREEN_HEIGHT = Frame.HEIGHT;
+	
+	public static final int BACK_BUTTON_WIDTH = 183;
+	public static final int BACK_BUTTON_HEIGHT = 176;
+	public static final int BACK_BUTTON_X = 75;
+	public static final int BACK_BUTTON_Y = 75;
+	
+	public static final int TEXTBOX_WIDTH = 542;
+	public static final int TEXTBOX_HEIGHT = 83;
+	public static final int TEXTBOX_X = 715;
+	public final int STUDENT_ID_BOX_Y = 604;
+	public final int PASSWORD_BOX_Y = 784;
+	
+	public static final int SUBMIT_CREDENTIALS_WIDTH = 400;
+	public static final int SUBMIT_CREDENTIALS_HEIGHT = 90;
+	public static final int SUBMIT_CREDENTIALS_X = 795;
+	public static final int SUBMIT_CREDENTIALS_Y = 917;
+	
+	JTextField StudentIDTextBox;
+	JPasswordField PasswordIDTextBox;
+	JLabel SubmitCredentialsButton;
+	JLabel BackButton;
 	
 	public static String StudentID;
 	public static String username;
 	public String password;
 	
-	public static Image LoginPanelBackground;
+	public Color Background_Color = new Color(0, 25, 38);
+	
+	public Image LoginPanelBackground;
 	
 	Frame parentFrame;
 	
-	TextField EnterID;
-	JPasswordField EnterPassword;
-	JLabel Login;
-	JLabel SignUp;
 	
-	LoginPanel(Frame parentFrame){
+	MenteeLoginPanel(Frame parentFrame){
 		this.parentFrame = parentFrame;
 		
-		LoginPanelBackground = new ImageIcon("Login.png").getImage();
+		LoginPanelBackground = new ImageIcon("Mentee New.png").getImage();
 		
-		EnterID = new TextField();
-		EnterPassword = new JPasswordField();
-		Login = new JLabel();
-		SignUp = new JLabel();
+		StudentIDTextBox = new JTextField();
+		PasswordIDTextBox = new JPasswordField();
+		SubmitCredentialsButton = new JLabel();
+		BackButton = new JLabel();
 		
-		EnterPassword.setFont(new Font("mv Boli", Font.PLAIN, 30));
-		EnterPassword.setBackground(Color.ORANGE);
-		EnterPassword.setForeground(Color.BLUE);
-		EnterPassword.setText("Password");
-		EnterPassword.setBounds(100, 650, PASS_WIDTH, 50);
+		PasswordIDTextBox.setFont(new Font("mv Boli", Font.PLAIN, 30));
+		PasswordIDTextBox.setBackground(Background_Color);
+		PasswordIDTextBox.setForeground(Color.WHITE);
+		PasswordIDTextBox.setCaretColor(Color.WHITE);
+		PasswordIDTextBox.setBorder(null);
+		PasswordIDTextBox.setBounds(TEXTBOX_X, PASSWORD_BOX_Y, TEXTBOX_WIDTH, TEXTBOX_HEIGHT);
 		
-		EnterID.setFont(new Font("mv Boli", Font.PLAIN, 30));
-		EnterID.setBackground(Color.ORANGE);
-		EnterID.setForeground(Color.BLUE);
-		EnterID.setText("ID");
-		EnterID.setBounds(100, 500, USER_WIDTH, 50);
+		StudentIDTextBox.setFont(new Font("mv Boli", Font.PLAIN, 30));
+		StudentIDTextBox.setBackground(Background_Color);
+		StudentIDTextBox.setForeground(Color.WHITE);
+		StudentIDTextBox.setCaretColor(Color.WHITE);
+		StudentIDTextBox.setBorder(null);
+		StudentIDTextBox.setBounds(TEXTBOX_X, STUDENT_ID_BOX_Y, TEXTBOX_WIDTH, TEXTBOX_HEIGHT);
 		
-		Login.addMouseListener(new MouseAdapter() {
+		SubmitCredentialsButton.setBounds(SUBMIT_CREDENTIALS_X, SUBMIT_CREDENTIALS_Y, SUBMIT_CREDENTIALS_WIDTH, SUBMIT_CREDENTIALS_HEIGHT);
+		SubmitCredentialsButton.addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mousePressed(MouseEvent event) {
-				checkInformation();
+				checkMenteeInformation();
 			}
 			
 		});
-		Login.setIcon(new ImageIcon("button_login.png"));
-		//Login.setFont(new Font("Consolas",Font.BOLD,15));
-		//Login.setForeground(Color.BLUE);
-		Login.setBounds(100, 725, 200, 50);
-		Login.setFocusable(false);
 		
-		SignUp.addMouseListener(new MouseAdapter() {
+		BackButton.setBounds(BACK_BUTTON_X, BACK_BUTTON_Y, BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT);
+		BackButton.addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mousePressed(MouseEvent event) {
-				
+				parentFrame.showHomePanel();
 			}
 			
 		});
-        SignUp.setIcon(new ImageIcon("button_sign-up.png"));
-        //SignUp.setFont(new Font("Consolas",Font.BOLD,15));
-        //SignUp.setForeground(Color.RED);
-        SignUp.setBounds(100, 800, 200, 50);
-        SignUp.setFocusable(false);
+
         
 		this.setSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
-		this.add(Login);
-		this.add(SignUp);
-		this.add(EnterPassword);
-		this.add(EnterID);
+		this.add(StudentIDTextBox);
+		this.add(PasswordIDTextBox);
+		this.add(SubmitCredentialsButton);
+		this.add(BackButton);
 		this.setLayout(null);
 		this.setVisible(true);;
 		
@@ -121,24 +134,19 @@ public class LoginPanel extends JPanel{
     }
     
 	
-	public void checkInformation() {
-			StudentID = EnterID.getText();
-			password = String.valueOf(EnterPassword.getPassword());
+	public void checkMenteeInformation() {
+			StudentID = StudentIDTextBox.getText();
+			password = String.valueOf(PasswordIDTextBox.getPassword());
 			
 			try {
 				boolean exists = checkAccount(StudentID, password);
 				
 				if(exists) {
-					parentFrame.showHomePanel();
-					//System.out.print("The account exists");
-					//this.dispose();
-					//JOptionPane.showMessageDialog(null, "Account Found Successfully!", "Success!", JOptionPane.INFORMATION_MESSAGE);
-					//Thread.sleep(1000);
-
+					parentFrame.showAccountInformationPanel();
+					
 				}
 				else {
-					System.out.print("The account doesnt exist");
-					//JOptionPane.showMessageDialog(null, "Input Account Was Not Recognized. Try Again", "Uknown Account", JOptionPane.OK_OPTION);
+					JOptionPane.showMessageDialog(null, "Input Account Was Not Recognized. Please Try Again", "Uknown Account", JOptionPane.WARNING_MESSAGE);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
