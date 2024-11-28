@@ -170,7 +170,7 @@ public class SignUpAsMentorPanel extends JPanel {
         g.drawImage(SignUpPanelBackground, 0, 0, this);
     }
 
-    private void createMentorAccount() {
+    void createMentorAccount() {
         String studentID = PMUIDTextBox.getText();
         String username = UsernameTextBox.getText();
         String email = EmailTextBox.getText();

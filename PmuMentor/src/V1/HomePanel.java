@@ -11,27 +11,26 @@ import javax.swing.JPanel;
 
 public class HomePanel extends JPanel {
 
-	public static final int SIGN_UP_BUTTON_WIDTH = 400;
-	public static final int SIGN_UP_BUTTON_HEIGHT = 81;
-	public static final int LOG_IN_BUTTON_WIDTH = 361;
-	public static final int LOG_IN_BUTTON_HEIGHT = 85;
-	public final int SIGN_UP_AS_MENTEE_X = 144;
-	public final int SIGN_UP_AS_MENTEE_Y = 619;
-	public final int SIGN_UP_AS_MENTOR_X = 148;
-	public final int SIGN_UP_AS_MENTOR_Y = 721;
-	public final int LOGIN_X = 167;
-	public final int LOGIN_AS_MENTEE_Y = 823;
-	public final int LOGIN_AS_MENTOR_Y = 929;
-
+	private static final int SIGN_UP_BUTTON_WIDTH = 400;
+    private static final int SIGN_UP_BUTTON_HEIGHT = 81;
+	private static final int LOG_IN_BUTTON_WIDTH = 361;
+	private static final int LOG_IN_BUTTON_HEIGHT = 85;
+	private final int SIGN_UP_AS_MENTEE_X = 144;
+	private final int SIGN_UP_AS_MENTEE_Y = 619;
+	private final int SIGN_UP_AS_MENTOR_X = 148;
+	private final int SIGN_UP_AS_MENTOR_Y = 721;
+	private final int LOGIN_X = 167;
+	private final int LOGIN_AS_MENTEE_Y = 823;
+	private final int LOGIN_AS_MENTOR_Y = 929;
 	
-	Image HomePanelBackground;
+	private Image HomePanelBackground;
 	
-	JLabel SignUpAsMenteeButton;
-	JLabel SignUpAsMentorButton;
-	JLabel LoginAsMenteeButton;
-	JLabel LoginAsMentorButton;
+	private JLabel SignUpAsMenteeButton;
+	private JLabel SignUpAsMentorButton;
+	private JLabel LoginAsMenteeButton;
+	private JLabel LoginAsMentorButton;
 	
-	Frame parentFrame;
+	private Frame parentFrame;
 	
 	HomePanel(Frame parentFrame){
 		this.parentFrame = parentFrame;

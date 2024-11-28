@@ -109,7 +109,7 @@ public class AccountInformationPanel extends JPanel {
         g.drawImage(settingsPageBackground, 0, 0, this);
     }
 
-    private void updateAccountInformation() {
+    void updateAccountInformation() {
         String newUsername = usernameTextBox.getText();
         String newEmail = emailTextBox.getText();
         String newPassword = String.valueOf(passwordTextBox.getPassword());
@@ -136,7 +136,7 @@ public class AccountInformationPanel extends JPanel {
             }
             if (!newEmail.isEmpty()) {
                 if (!firstField) updateQuery.append(", ");
-                updateQuery.append("email = ?");
+                updateQuery.append("PMU_Email = ?");
                 firstField = false;
             }
             if (!newPassword.isEmpty()) {
@@ -159,6 +159,8 @@ public class AccountInformationPanel extends JPanel {
             }
             preparedStatement.setString(paramIndex, MenteeLoginPanel.StudentID);
 
+            System.out.println("Executing query: " + preparedStatement.toString()); 
+
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
                 JOptionPane.showMessageDialog(null, "Account information updated successfully.", "Update Successful", JOptionPane.INFORMATION_MESSAGE);
@@ -168,10 +170,11 @@ public class AccountInformationPanel extends JPanel {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "SQLException: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void deleteAccount() {
+    void deleteAccount() {
         int confirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete your account?", "Delete Account", JOptionPane.YES_NO_OPTION);
         if (confirmation == JOptionPane.YES_OPTION) {
             try (Connection connection = DriverManager.getConnection(

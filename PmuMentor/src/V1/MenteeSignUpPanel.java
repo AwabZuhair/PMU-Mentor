@@ -152,7 +152,7 @@ public class MenteeSignUpPanel extends JPanel {
         g.drawImage(SignUpPanelBackground, 0, 0, this);
     }
 
-    private void createMenteeAccount() {
+    void createMenteeAccount() {
         String studentID = PMUIDTextBox.getText();
         String username = UsernameTextBox.getText();
         String email = EmailTextBox.getText();

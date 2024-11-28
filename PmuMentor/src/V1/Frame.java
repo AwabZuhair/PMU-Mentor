@@ -30,26 +30,20 @@ import javax.swing.JPasswordField;
 public class Frame extends JFrame{
 	
 	
-	CardLayout cardLayout;
-	JPanel cardPanel;
+	private CardLayout cardLayout;
+	private JPanel cardPanel;
 	
 	//Insert Panels Here 
-	MenteeLoginPanel MenteeLoginPanel;
-	HomePanel homePanel;
-	MentorLoginPanel MentorLoginPanel;
-	MenteeSignUpPanel MenteeSignUpPanel;
-	SignUpAsMentorPanel SignUpAsMentorPanel;
-	MentorPendingPanel MentorPendingPanel;
-	AccountInformationPanel accountInformationPanel;
+	private MenteeLoginPanel MenteeLoginPanel;
+	private HomePanel homePanel;
+	private MentorLoginPanel MentorLoginPanel;
+	private MenteeSignUpPanel MenteeSignUpPanel;
+	private SignUpAsMentorPanel SignUpAsMentorPanel;
+	private MentorPendingPanel MentorPendingPanel;
+	private AccountInformationPanel accountInformationPanel;
 	
-	GraphicsDevice device;
-	
-	File SoundFile;
-	AudioInputStream audioStream;
-	public static Clip clip;
-	FloatControl AudioControl;
-	
-	ImageIcon HeaderIcon;
+	private GraphicsDevice device;
+
 	
 	Frame(){
 	
@@ -80,54 +74,16 @@ public class Frame extends JFrame{
 		        
 		this.setLocationRelativeTo(null);
 		this.add(cardPanel);
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.setUndecorated(true);
-		this.pack();
+		//this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//this.setUndecorated(true);
+		//this.pack();
 		this.setTitle("PMU Mentor");
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(null);
-		this.setVisible(true);
-		
-		try {
-			playMenuMusic();
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "An Unexpected Audio Error Occured :( ", "Audio Error", JOptionPane.WARNING_MESSAGE);
-	}
-		
+		//this.setLayout(null);
+		this.setVisible(true);	
 	}
 	
-	
-	
-	public void playMenuMusic() {
-		
-		try {	
-			SoundFile = new File("peaceful-piano-background-music-218762.mp3");
-			audioStream = AudioSystem.getAudioInputStream(SoundFile);
-			clip = AudioSystem.getClip();
-			clip.open(audioStream);	
-			
-			AudioControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
-		}catch(Exception e) {
-	    	System.out.println("AN ERROR OCCURRED IN 'PLAYMENUMUSIC' AT 'FRAME'");
-	    }
-			
-	
-		}
-		
-		public void pauseMenuMusic() {
-		    if (clip != null && clip.isRunning()) {
-		        clip.stop();
-		    }
-		}
-		
-		public void resumeMenuMusic() {
-			clip.start();
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
-		}
-		
 		public void showMenteeLoginPanel() {
 	        cardLayout.show(cardPanel, "MenteeLogin");
 		}
